@@ -97,6 +97,7 @@ class _AnimatedTabBar extends State<AnimatedTabBar> {
                     children: [
                       SvgPicture.asset(
                         widget.tabIcons[currentTabIndex],
+                        // ignore: deprecated_member_use
                         color: isActiveTab ? AppColors.white : AppColors.blackColor,
                       )
                     ],

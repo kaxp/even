@@ -1,4 +1,3 @@
-import 'package:even/config/themes/assets/app_colors.dart';
 import 'package:even/modules/home/home_tab_bar.dart';
 import 'package:flutter/material.dart';
 
