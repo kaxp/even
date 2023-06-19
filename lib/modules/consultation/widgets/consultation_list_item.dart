@@ -72,13 +72,20 @@ class ConsultationListItem extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            AppStrings.consultation.toUpperCase(),
-                            style: const TextStyle(
-                              fontFamily: AppFonts.ratRegular,
-                              fontSize: 10,
-                              color: AppColors.blackColor,
-                              fontWeight: FontWeight.w400,
+                          Container(
+                            color: AppColors.yellow,
+                            padding: const EdgeInsets.only(right: 8),
+                            child: Container(
+                              transform: Matrix4.translationValues(1, -6, 0),
+                              child: Text(
+                                AppStrings.consultation.toUpperCase(),
+                                style: const TextStyle(
+                                  fontFamily: AppFonts.ratMedium,
+                                  fontSize: 10,
+                                  color: AppColors.blackColor,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
                             ),
                           ),
                           const Image(

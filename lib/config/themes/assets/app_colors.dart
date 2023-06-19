@@ -9,4 +9,5 @@ mixin AppColors {
   static const Color greyText = Color(0XFF666666);
   static const Color lightGreyText = Color(0XFFBBBBBB);
   static const Color offWhite = Color(0XFFF1F4F9);
+  static const Color yellow = Color(0XFFFBE277);
 }
