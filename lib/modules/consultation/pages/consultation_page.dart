@@ -24,6 +24,13 @@ class _ConsultationPageState extends State<ConsultationPage> {
   final _addConsultationButtonAnimation = GlobalKey<AnimatorWidgetState>();
   final _lineAnimation = GlobalKey<AnimatorWidgetState>();
 
+  final List<String> titles = [
+    'Consultation 1',
+    'Consultation 2',
+    'Consultation 3',
+    'Consultation 4',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,13 +93,20 @@ class _ConsultationPageState extends State<ConsultationPage> {
                   preferences: const AnimationPreferences(
                     duration: Duration(milliseconds: 1800),
                   ),
-                  child: const Text(
-                    AppStrings.addConsultation,
-                    style: TextStyle(
-                      fontFamily: AppFonts.ratBold,
-                      fontSize: 14,
-                      color: AppColors.primaryColor,
-                      fontWeight: FontWeight.w700,
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        titles.shuffle();
+                      });
+                    },
+                    child: const Text(
+                      AppStrings.addConsultation,
+                      style: TextStyle(
+                        fontFamily: AppFonts.ratBold,
+                        fontSize: 14,
+                        color: AppColors.primaryColor,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                   ),
                 ),
@@ -119,9 +133,13 @@ class _ConsultationPageState extends State<ConsultationPage> {
                     padding: const EdgeInsets.only(bottom: kSpacingXSmall),
                     primary: true,
                     shrinkWrap: true,
-                    itemCount: 4,
+                    itemCount: titles.length,
                     itemBuilder: (context, index) {
-                      return const ConsultationListItem();
+                      return ConsultationListItem(
+                        title: titles[index],
+                        itemKey: ValueKey(titles[index]),
+                        key: ValueKey(titles[index]),
+                      );
                     },
                   ),
                 ],

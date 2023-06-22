@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:even/config/themes/assets/app_colors.dart';
 import 'package:even/config/themes/assets/app_fonts.dart';
 import 'package:even/config/themes/assets/app_images.dart';
@@ -6,12 +8,33 @@ import 'package:even/constants/radius_constants.dart';
 import 'package:even/constants/spacing_constants.dart';
 import 'package:flutter/material.dart';
 
-class ConsultationListItem extends StatelessWidget {
-  const ConsultationListItem({super.key});
+class ConsultationListItem extends StatefulWidget {
+  const ConsultationListItem({super.key, required this.title, required this.itemKey});
+
+  final String title;
+  final Key itemKey;
+
+  @override
+  State<ConsultationListItem> createState() => _ConsultationListItemState();
+}
+
+class _ConsultationListItemState extends State<ConsultationListItem> {
+  bool shouldChangeColor = false;
+
+  final List<Color> colors = [
+    Colors.red,
+    Colors.pink,
+    Colors.orange,
+    Colors.green,
+    Colors.black,
+  ];
+
+  Color initialColor = Colors.blue;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      key: widget.itemKey,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
@@ -73,12 +96,13 @@ class ConsultationListItem extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            color: AppColors.yellow,
+                            key: widget.key,
+                            color: initialColor,
                             padding: const EdgeInsets.only(right: 8),
                             child: Container(
                               transform: Matrix4.translationValues(1, -6, 0),
                               child: Text(
-                                AppStrings.consultation.toUpperCase(),
+                                widget.title,
                                 style: const TextStyle(
                                   fontFamily: AppFonts.ratMedium,
                                   fontSize: 10,
@@ -156,10 +180,15 @@ class ConsultationListItem extends StatelessWidget {
                       const SizedBox(
                         height: kSpacingMedium,
                       ),
-                      SizedBox(
+                      AnimatedContainer(
+                        duration: const Duration(seconds: 2),
+                        curve: Curves.bounceOut,
+                        color: Colors.red,
                         height: kSpacingLarge,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            _generateRandomColour();
+                          },
                           child: const Text(
                             AppStrings.uploadDocs,
                             style: TextStyle(
@@ -219,5 +248,14 @@ class ConsultationListItem extends StatelessWidget {
         )
       ],
     );
+  }
+
+  void _generateRandomColour() {
+    final _random = Random();
+    final num = _random.nextInt((colors.length) - 0);
+
+    setState(() {
+      initialColor = colors[num];
+    });
   }
 }
