@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:even/config/themes/assets/app_colors.dart';
 import 'package:even/config/themes/assets/app_fonts.dart';
 import 'package:even/config/themes/assets/app_images.dart';
@@ -17,17 +19,30 @@ class ConsultationListItem extends StatefulWidget {
 }
 
 class _ConsultationListItemState extends State<ConsultationListItem> {
-  bool shouldChangeColor = false;
-
-  final List<Color> colors = [
+  final List<Color> _colors = [
     Colors.red,
     Colors.pink,
     Colors.orange,
     Colors.green,
-    Colors.black,
+    Colors.purple,
   ];
 
-  Color initialColor = Colors.blue;
+  Color _initialColor = Colors.blue;
+
+  @override
+  void initState() {
+    super.initState();
+    _generateRandomColour();
+  }
+
+  void _generateRandomColour() {
+    final _random = Random();
+    final num = _random.nextInt((_colors.length) - 0);
+
+    setState(() {
+      _initialColor = _colors[num];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -95,7 +110,7 @@ class _ConsultationListItemState extends State<ConsultationListItem> {
                         children: [
                           Container(
                             key: widget.key,
-                            color: initialColor,
+                            color: _initialColor,
                             padding: const EdgeInsets.only(right: 8),
                             child: Container(
                               transform: Matrix4.translationValues(1, -6, 0),
