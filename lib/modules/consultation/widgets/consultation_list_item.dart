@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:even/config/themes/assets/app_colors.dart';
 import 'package:even/config/themes/assets/app_fonts.dart';
 import 'package:even/config/themes/assets/app_images.dart';
@@ -37,11 +35,11 @@ class _ConsultationListItemState extends State<ConsultationListItem> {
       key: widget.itemKey,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: kSpacingXLarge),
+        const Padding(
+          padding: EdgeInsets.only(top: kSpacingXLarge),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
+            children: [
               Text(
                 '05:35 PM',
                 style: TextStyle(
@@ -183,12 +181,9 @@ class _ConsultationListItemState extends State<ConsultationListItem> {
                       AnimatedContainer(
                         duration: const Duration(seconds: 2),
                         curve: Curves.bounceOut,
-                        color: Colors.red,
                         height: kSpacingLarge,
                         child: ElevatedButton(
-                          onPressed: () {
-                            _generateRandomColour();
-                          },
+                          onPressed: () {},
                           child: const Text(
                             AppStrings.uploadDocs,
                             style: TextStyle(
@@ -248,14 +243,5 @@ class _ConsultationListItemState extends State<ConsultationListItem> {
         )
       ],
     );
-  }
-
-  void _generateRandomColour() {
-    final _random = Random();
-    final num = _random.nextInt((colors.length) - 0);
-
-    setState(() {
-      initialColor = colors[num];
-    });
   }
 }

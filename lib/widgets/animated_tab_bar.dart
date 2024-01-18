@@ -49,7 +49,6 @@ class _AnimatedTabBar extends State<AnimatedTabBar> {
             _getTabBackground(tabIndex),
             fit: BoxFit.fitWidth,
           ),
-
           AnimatedAlign(
             duration: animationDuration,
             curve: animationCurve,
@@ -81,6 +80,7 @@ class _AnimatedTabBar extends State<AnimatedTabBar> {
                   if (currentTabIndex == 0 || currentTabIndex == 1) {
                     // TODO(kaxp): Fix animation and duration issue on tab change.
                     // Open issue in flutter [https://github.com/flutter/flutter/issues/16892]
+                    // Transitioning a TabBarView manually doesn't honor the duration and curve
                     widget.controller.animationDuration;
                     widget.controller.animateTo(
                       currentTabIndex,
@@ -119,7 +119,7 @@ class _AnimatedTabBar extends State<AnimatedTabBar> {
                   widthFactor: 1 / widget.tabIcons.length,
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.only(top: kSpacingLarge),
+                      padding: const EdgeInsets.only(top: kSpacingMedium),
                       child: Text(
                         tabIndex == widget.controller.index ? '•' : '',
                         style: TextStyle(

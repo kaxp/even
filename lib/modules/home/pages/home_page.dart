@@ -12,17 +12,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      appBar: const CustomAppBar(
+      appBar: CustomAppBar(
         titleWidget: SizedBox.shrink(),
         isCenter: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(kSpacingMedium),
+        padding: EdgeInsets.all(kSpacingMedium),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
+          children: [
             Text(
               AppStrings.hospitalsNearYou,
               style: TextStyle(
